@@ -1,15 +1,23 @@
+/* Diagnostiko dhe riparo: konflikt specifike dhe overflow. */
 
+/*
+Në versionin fillestar:
 
-#poster {
-    color: #17263c;
-    background: #fffdf8;
-    width: 100%;
-    max-width: 700px;
-    padding: 40px;
-    box-sizing: border-box;
-}
+#poster kishte specificity më të madhe se .poster,
+sepse ID selector ka përparësi ndaj class selector.
+
+Prandaj #poster fitonte për color dhe width.
+*/
 
 .poster {
     color: #17263c;
+    background: #fffdf8;
+
     width: 100%;
+    max-width: 700px;
+
+    padding: 40px;
+    border: 1px solid #cfd5d1;
+
+    box-sizing: border-box;
 }
