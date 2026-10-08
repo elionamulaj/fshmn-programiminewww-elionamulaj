@@ -1,1 +1,15 @@
 
+
+#poster {
+    color: #17263c;
+    background: #fffdf8;
+    width: 100%;
+    max-width: 700px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.poster {
+    color: #17263c;
+    width: 100%;
+}
