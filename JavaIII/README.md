@@ -1,39 +1,39 @@
 # Java III — Klinika e CSS
 
-Ky projekt paraqet një afishe për Klubin e Debatit duke përdorur HTML dhe CSS.
+Ky projekt paraqet një afishe për Klubin e Debatit duke përdorur HTML5 dhe CSS3.
 
-## Çfarë është përdorur
+## Përshkrimi i projektit
 
-- HTML5
-- CSS të jashtëm
-- Klasa CSS të ripërdorshme
-- CSS variables
-- Flexbox
-- Responsive design
-- Hover
-- Focus-visible
-- Box-sizing
-- CSS specificity
+Qëllimi i detyrës është krijimi i një afisheje të thjeshtë dhe responsive për një aktivitet të Klubit të Debatit.
 
-## Afisha
-
-Afisha përmban:
+Afisheja përmban:
 
 - Titullin e klubit të debatit
 - Temën e debatit
 - Datën dhe orën
-- Vendin
-- Përshkrimin
-- Lidhjen për regjistrim
-- Tri etiketa: Falas, Vende të kufizuara dhe Edhe online
+- Vendin e aktivitetit
+- Një përshkrim të shkurtër
+- Lidhjen "Kërko informacion"
+- Etiketën "Falas"
+- Etiketën "Vende të kufizuara: 20"
+- Etiketën "Edhe online"
 
-## CSS Variables
+## Teknologjitë e përdorura
 
-Ngjyrat dhe hapësirat janë vendosur në `:root` si variabla CSS, për shembull:
+- HTML5
+- CSS3
+- CSS Variables
+- Flexbox
+- Responsive Design
+- CSS Specificity
+- Box Model
+- Hover dhe Focus-visible
 
-```css
-:root {
-    --background: #f4f1e8;
-    --text: #17263c;
-    --accent: #0f766e;
-}
+## Struktura e projektit
+
+```text
+JavaIII/
+├── index.html
+├── style.css
+├── gabime.css
+└── README.md
