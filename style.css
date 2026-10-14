@@ -1,0 +1,126 @@
+
+/* Madhesia e elementeve */
+* {
+    box-sizing: border-box;
+}
+
+/* Pamja e pergjithshme */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #222;
+}
+
+/* Header */
+header {
+    background-color: #17365d;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0 0 15px;
+}
+
+/* Menuja */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Fokusi me tastiere */
+a:focus-visible {
+    outline: 3px solid #ffcc00;
+    outline-offset: 3px;
+}
+
+/* Permbajtja kryesore */
+main {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    min-width: 0;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+section > h2 {
+    margin-top: 0;
+}
+
+/* Kartat me CSS Grid */
+.kartat {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    width: 100%;
+    min-width: 0;
+}
+
+/* Pamja e kartave */
+article {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+article h2 {
+    margin-top: 0;
+    color: #17365d;
+}
+
+article p {
+    line-height: 1.6;
+}
+
+/* Lidhja Detaje */
+article a {
+    display: inline-block;
+    background-color: #17365d;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+article a:hover {
+    background-color: #28558a;
+}
+
+/* Seksioni Info */
+#info {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+
+/* Tri kolona ne ekran te gjere */
+@media (min-width: 800px) {
+    .kartat {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
