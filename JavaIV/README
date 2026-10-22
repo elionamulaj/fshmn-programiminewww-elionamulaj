@@ -1,1 +1,78 @@
 
+# Java IV - Festivali i Shkencës
+
+## Përshkrimi
+
+Ky projekt është një faqe interneti për një festival shkencor. Faqja është ndërtuar me HTML dhe CSS dhe përshtatet në telefon, tablet dhe kompjuter.
+
+## Çfarë përmban projekti?
+
+Faqja përmban:
+- Një menu navigimi.
+- Gjashtë aktivitete shkencore.
+- Titullin dhe kategorinë e secilit aktivitet.
+- Orarin dhe lidhjen për më shumë detaje.
+- Ilustrime për aktivitetet.
+- Dizajn responsive për ekrane të ndryshme.
+
+## Teknologjitë e përdorura
+
+HTML është përdorur për strukturën e faqes.
+
+CSS është përdorur për ngjyrat, dizajnin dhe organizimin e elementeve.
+
+Flexbox është përdorur për menynë.
+
+CSS Grid është përdorur për kartat e aktiviteteve.
+
+Media Queries janë përdorur për përshtatjen në ekrane të ndryshme.
+
+## Si hapet projekti?
+
+1. Hapet dosja JavaIV.
+2. Klikohet skedari index.html.
+3. Faqja hapet në shfletues.
+4. Kodi mund të shihet në Visual Studio Code.
+
+## Testimi
+
+### Ekrani 360px
+Rezultati i pritur: 1 kolonë.
+
+Rezultati i marrë: Kartat shfaqen në 1 kolonë.
+
+### Ekrani 768px
+Rezultati i pritur: 2 kolona.
+
+Rezultati i marrë: Kartat shfaqen në 2 kolona.
+
+### Ekrani 1280px
+Rezultati i pritur: 3 kolona.
+
+Rezultati i marrë: Kartat shfaqen në 3 kolona.
+
+### Teksti i gjatë
+Rezultati i pritur: Teksti të mos dalë jashtë kartës.
+
+Rezultati i marrë: Teksti përshtatet brenda kartës.
+
+### Menuja
+Rezultati i pritur: Menuja të funksionojë me tastierë.
+
+Rezultati i marrë: Linket mund të përdoren me Tab dhe Enter.
+
+## Reflektimi
+
+### Kur përdoret Flexbox dhe kur Grid?
+
+Flexbox përdoret kur elementet duhet të renditen në një rresht ose kolonë, si për shembull menuja.
+
+Grid përdoret kur elementet duhet të organizohen në disa rreshta dhe kolona, si kartat e aktiviteteve.
+
+
+## Përfundimi
+
+Projekti paraqet një faqe responsive për një festival shkencor.
+
+Faqja përmban gjashtë aktivitete dhe përshtatet me madhësinë e ekranit duke përdorur Flexbox, Grid dhe Media Queries.
+
