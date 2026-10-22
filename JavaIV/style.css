@@ -1,1 +1,470 @@
 
+:root {
+  --navy: #111d29;
+  --green: #d9f778;
+  --paper: #f8f7f2;
+  --text: #162124;
+  --muted: #5e6a70;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--paper);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible {
+  outline: 3px solid orange;
+  outline-offset: 4px;
+}
+
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin: auto;
+}
+
+.skip {
+  position: absolute;
+  top: -100px;
+  left: 10px;
+  background: white;
+  color: black;
+  padding: 12px;
+  z-index: 10;
+}
+
+.skip:focus {
+  top: 10px;
+}
+
+/* MENUJA ME FLEXBOX */
+
+header {
+  background: var(--navy);
+  color: white;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 22px 0;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--green);
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: var(--green);
+}
+
+.nav-button {
+  display: inline-block;
+  color: var(--navy);
+  background: var(--green);
+  padding: 12px 18px;
+  border-radius: 30px;
+}
+
+/* PJESA KRYESORE */
+
+.hero {
+  background: var(--navy);
+  color: white;
+  overflow: hidden;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 30px;
+  min-height: 480px;
+  padding: 70px 0;
+}
+
+.eyebrow {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 6vw, 78px);
+  line-height: 1.05;
+  margin: 20px 0;
+  overflow-wrap: anywhere;
+}
+
+.hero h1 span {
+  color: var(--green);
+}
+
+.hero p {
+  max-width: 460px;
+  line-height: 1.8;
+  color: #d0d8dc;
+}
+
+.hero-button {
+  display: inline-block;
+  margin-top: 22px;
+  background: var(--green);
+  color: var(--navy);
+  padding: 16px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero-button:hover {
+  background: #efffb7;
+}
+
+.hero-art {
+  display: grid;
+  place-items: center;
+  position: relative;
+  min-height: 320px;
+}
+
+.planet {
+  width: min(280px, 75%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 25%,
+    #c6d3ff,
+    #9297ef,
+    #6562bb
+  );
+  display: grid;
+  place-items: center;
+  transform: rotate(-12deg);
+  position: relative;
+  box-shadow: 20px 30px 65px #080d1790;
+}
+
+.planet::before {
+  content: "";
+  position: absolute;
+  width: 115%;
+  height: 28%;
+  border: 15px solid var(--green);
+  border-radius: 50%;
+  transform: rotate(-25deg);
+}
+
+.planet strong {
+  position: relative;
+  font-size: clamp(35px, 5vw, 52px);
+  font-weight: 900;
+  line-height: .9;
+  color: var(--navy);
+  text-align: center;
+}
+
+/* PROGRAMI */
+
+section {
+  scroll-margin-top: 20px;
+}
+
+.program {
+  padding: 85px 0;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #5c7b45;
+}
+
+.section-title {
+  font-size: clamp(30px, 5vw, 49px);
+  margin: 12px 0 16px;
+}
+
+.section-description {
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 35px;
+}
+
+/* GRID RESPONSIVE */
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
+.activity-card {
+  min-width: 0;
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #e4e6e0;
+  display: flex;
+  flex-direction: column;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.activity-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px #00000014;
+}
+
+/* IMAZHET FLEKSIBILE */
+
+.card-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 600 / 380;
+}
+
+.card-number {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 8px 12px;
+  background: #111d29dd;
+  border-radius: 20px;
+  color: white;
+  font-size: 11px;
+}
+
+.card-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.category {
+  font-size: 11px;
+  color: #66864c;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.card-content h3 {
+  font-size: 24px;
+  line-height: 1.2;
+  margin: 12px 0;
+  overflow-wrap: anywhere;
+}
+
+.card-description {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-top: 1px solid #eeeeee;
+  margin-top: auto;
+  padding-top: 20px;
+  align-items: center;
+}
+
+.time {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.card-bottom a {
+  color: #37623f;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.card-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* RRETH FESTIVALIT */
+
+.about {
+  background: #eaf0db;
+  padding: 75px 0;
+}
+
+.about p {
+  line-height: 1.9;
+  max-width: 750px;
+}
+
+/* DETAJET */
+
+.details {
+  padding: 75px 0;
+}
+
+.detail-item {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  overflow-wrap: anywhere;
+}
+
+.detail-item:target {
+  background: #eaf0db;
+  outline: 2px solid #7c9b4f;
+}
+
+.detail-item h3 {
+  margin: 10px 0;
+}
+
+.detail-item p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* FOOTER */
+
+footer {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+footer p {
+  color: #b9c4c9;
+  font-size: 13px;
+}
+
+/* TABLET: 600 - 899 PX, 2 KOLONA */
+
+@media (min-width: 600px) {
+  .activities-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* KOMPJUTER: 900 PX E LART, 3 KOLONA */
+
+@media (min-width: 900px) {
+  .activities-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* TELEFON: NEN 600 PX, 1 KOLONE */
+
+@media (max-width: 599px) {
+  .header-inner {
+    align-items: flex-start;
+  }
+
+  nav ul {
+    gap: 12px;
+  }
+
+  nav a {
+    font-size: 12px;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    padding: 50px 0;
+  }
+
+  .hero-art {
+    min-height: 270px;
+  }
+
+  .planet {
+    width: 205px;
+  }
+
+  .planet strong {
+    font-size: 35px;
+  }
+
+  .program,
+  .about,
+  .details {
+    padding: 55px 0;
+  }
+
+  .card-content {
+    padding: 22px;
+  }
+}
+
+/* TABLET */
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* QASJA DHE ANIMACIONET */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .activity-card {
+    transition: none;
+  }
+}
+
