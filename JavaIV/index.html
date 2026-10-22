@@ -1,1 +1,1028 @@
 
+
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Festivali që përshtatet në çdo ekran</title>
+
+  <style>
+    :root {
+      --navy: #111d29;
+      --green: #d9f778;
+      --paper: #f8f7f2;
+      --text: #162124;
+      --muted: #5e6a70;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--paper);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible {
+      outline: 3px solid orange;
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    .skip {
+      position: absolute;
+      top: -100px;
+      left: 10px;
+      background: white;
+      color: black;
+      padding: 12px;
+      z-index: 10;
+    }
+
+    .skip:focus {
+      top: 10px;
+    }
+
+    /* MENUJA ME FLEXBOX */
+
+    header {
+      background: var(--navy);
+      color: white;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 22px 0;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--green);
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: var(--green);
+    }
+
+    .nav-button {
+      display: inline-block;
+      color: var(--navy);
+      background: var(--green);
+      padding: 12px 18px;
+      border-radius: 30px;
+    }
+
+    /* PJESA KRYESORE */
+
+    .hero {
+      background: var(--navy);
+      color: white;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 30px;
+      min-height: 480px;
+      padding: 70px 0;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 1.05;
+      margin: 20px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero p {
+      max-width: 460px;
+      line-height: 1.8;
+      color: #d0d8dc;
+    }
+
+    .hero-button {
+      display: inline-block;
+      margin-top: 22px;
+      background: var(--green);
+      color: var(--navy);
+      padding: 16px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hero-button:hover {
+      background: #efffb7;
+    }
+
+    .hero-art {
+      display: grid;
+      place-items: center;
+      position: relative;
+      min-height: 320px;
+    }
+
+    .planet {
+      width: min(280px, 75%);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 30% 25%,
+        #c6d3ff,
+        #9297ef,
+        #6562bb
+      );
+      display: grid;
+      place-items: center;
+      transform: rotate(-12deg);
+      position: relative;
+      box-shadow: 20px 30px 65px #080d1790;
+    }
+
+    .planet::before {
+      content: "";
+      position: absolute;
+      width: 115%;
+      height: 28%;
+      border: 15px solid var(--green);
+      border-radius: 50%;
+      transform: rotate(-25deg);
+    }
+
+    .planet strong {
+      position: relative;
+      font-size: clamp(35px, 5vw, 52px);
+      font-weight: 900;
+      line-height: .9;
+      color: var(--navy);
+      text-align: center;
+    }
+
+    /* PROGRAMI */
+
+    section {
+      scroll-margin-top: 20px;
+    }
+
+    .program {
+      padding: 85px 0;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #5c7b45;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 5vw, 49px);
+      margin: 12px 0 16px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 35px;
+    }
+
+    /* GRID RESPONSIVE */
+
+    .activities-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .activity-card {
+      min-width: 0;
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #e4e6e0;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px #00000014;
+    }
+
+    /* IMAZHET FLEKSIBILE */
+
+    .card-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-image svg {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 600 / 380;
+    }
+
+    .card-number {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 8px 12px;
+      background: #111d29dd;
+      border-radius: 20px;
+      color: white;
+      font-size: 11px;
+    }
+
+    .card-content {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .category {
+      font-size: 11px;
+      color: #66864c;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    .card-content h3 {
+      font-size: 24px;
+      line-height: 1.2;
+      margin: 12px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .card-description {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-top: 1px solid #eeeeee;
+      margin-top: auto;
+      padding-top: 20px;
+      align-items: center;
+    }
+
+    .time {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .card-bottom a {
+      color: #37623f;
+      font-size: 13px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .card-bottom a:hover {
+      text-decoration: underline;
+    }
+
+    /* RRETH FESTIVALIT */
+
+    .about {
+      background: #eaf0db;
+      padding: 75px 0;
+    }
+
+    .about p {
+      line-height: 1.9;
+      max-width: 750px;
+    }
+
+    /* DETAJET */
+
+    .details {
+      padding: 75px 0;
+    }
+
+    .detail-item {
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+      overflow-wrap: anywhere;
+    }
+
+    .detail-item:target {
+      background: #eaf0db;
+      outline: 2px solid #7c9b4f;
+    }
+
+    .detail-item h3 {
+      margin: 10px 0;
+    }
+
+    .detail-item p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    footer {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      padding: 35px 15px;
+    }
+
+    footer p {
+      color: #b9c4c9;
+      font-size: 13px;
+    }
+
+    /* TABLET: 600 - 899 PX */
+
+    @media (min-width: 600px) {
+      .activities-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* KOMPJUTER: 900 PX E LART */
+
+    @media (min-width: 900px) {
+      .activities-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    /* TELEFON */
+
+    @media (max-width: 599px) {
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      nav ul {
+        gap: 12px;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 50px 0;
+      }
+
+      .hero-art {
+        min-height: 270px;
+      }
+
+      .planet {
+        width: 205px;
+      }
+
+      .planet strong {
+        font-size: 35px;
+      }
+
+      .program,
+      .about,
+      .details {
+        padding: 55px 0;
+      }
+
+      .card-content {
+        padding: 22px;
+      }
+    }
+
+    @media (min-width: 600px) and (max-width: 899px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .activity-card {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a class="skip" href="#main">Kalo te përmbajtja</a>
+
+  <header id="fillimi">
+    <div class="container header-inner">
+
+      <a href="#fillimi" class="logo">
+        ✳ SCIENCE<span>FEST</span>
+      </a>
+
+      <nav aria-label="Menuja kryesore">
+        <ul>
+          <li><a href="#programi">Programi</a></li>
+          <li><a href="#rreth">Rreth festivalit</a></li>
+          <li><a href="#detajet">Detajet</a></li>
+          <li>
+            <a href="#programi" class="nav-button">
+              Shiko aktivitetet ↗
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="hero">
+      <div class="container hero-inner">
+
+        <div>
+          <div class="eyebrow">
+            ✳ NJË DITË PLOT ZBULIME
+          </div>
+
+          <h1>
+            Kurioziteti
+            <span>nuk ka kufij.</span>
+          </h1>
+
+          <p>
+            Mirë se vini në Festivalin e Shkencës!
+            Gjashtë aktivitete, eksperimente dhe ide
+            që e bëjnë të ardhmen më interesante.
+          </p>
+
+          <a class="hero-button" href="#programi">
+            Eksploro programin ↗
+          </a>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="planet">
+            <strong>SCI<br>ENCE<br>!</strong>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="program" id="programi">
+      <div class="container">
+
+        <p class="section-label">ÇFARË PO NDODH?</p>
+        <h2 class="section-title">
+          Zgjedhe aventurën tënde.
+        </h2>
+
+        <p class="section-description">
+          Zbulo gjashtë aktivitete interesante
+          nga fusha e shkencës dhe teknologjisë.
+        </p>
+
+        <div class="activities-grid">
+
+          <!-- AKTIVITETI 1 -->
+
+          <article class="activity-card">
+
+            <div class="card-image">
+              <svg viewBox="0 0 600 380"
+                   role="img"
+                   aria-label="Ilustrim i robotit">
+                <rect width="600" height="380" fill="#c9c5f7"/>
+                <circle cx="500" cy="70" r="95" fill="#dedbff"/>
+                <circle cx="95" cy="310" r="100" fill="#aaa4e8"/>
+
+                <rect x="190" y="95" width="220" height="190"
+                      rx="42" fill="#f1f0ff"
+                      stroke="#404e83" stroke-width="12"/>
+
+                <rect x="220" y="143" width="160" height="82"
+                      rx="24" fill="#394a7c"/>
+
+                <circle cx="265" cy="184" r="17" fill="#d9f778"/>
+                <circle cx="335" cy="184" r="17" fill="#d9f778"/>
+
+                <path d="M270 246 Q300 269 330 246"
+                      fill="none" stroke="#404e83"
+                      stroke-width="9" stroke-linecap="round"/>
+
+                <path d="M300 95 V57"
+                      stroke="#404e83" stroke-width="10"/>
+                <circle cx="300" cy="50" r="15" fill="#f39b91"/>
+
+                <rect x="150" y="150" width="35" height="75"
+                      rx="15" fill="#404e83"/>
+                <rect x="415" y="150" width="35" height="75"
+                      rx="15" fill="#404e83"/>
+              </svg>
+
+              <span class="card-number">01 / 06</span>
+            </div>
+
+            <div class="card-content">
+              <p class="category">TEKNOLOGJI</p>
+
+              <h3>Robotët e së ardhmes</h3>
+
+              <p class="card-description">
+                Shiko si ndërtohen dhe programohen
+                robotët që na ndihmojnë çdo ditë.
+              </p>
+
+              <div class="card-bottom">
+                <span class="time">09:00 - 10:00</span>
+                <a href="#detaj-robotika">Detajet ↗</a>
+              </div>
+            </div>
+
+          </article>
+
+          <!-- AKTIVITETI 2 -->
+
+          <article class="activity-card">
+
+            <div class="card-image">
+              <svg viewBox="0 0 600 380"
+                   role="img"
+                   aria-label="Ilustrim i raketës në hapësirë">
+                <rect width="600" height="380" fill="#b7d9f0"/>
+
+                <circle cx="470" cy="85" r="62" fill="#f9d879"/>
+                <circle cx="115" cy="280" r="85" fill="#8eb5e0"/>
+
+                <g transform="rotate(35 300 190)">
+                  <path d="M300 40 Q390 130 360 260
+                           L240 260 Q210 130 300 40"
+                        fill="#ffffff"
+                        stroke="#395b88" stroke-width="9"/>
+
+                  <circle cx="300" cy="150" r="43"
+                          fill="#80c8e8"
+                          stroke="#395b88" stroke-width="9"/>
+
+                  <path d="M240 215 L195 280 L245 270"
+                        fill="#f48c83"/>
+
+                  <path d="M360 215 L405 280 L355 270"
+                        fill="#f48c83"/>
+
+                  <path d="M270 260 L300 345 L330 260"
+                        fill="#ffc967"/>
+                </g>
+
+                <circle cx="80" cy="65" r="7" fill="#ffffff"/>
+                <circle cx="530" cy="245" r="8" fill="#ffffff"/>
+              </svg>
+
+              <span class="card-number">02 / 06</span>
+            </div>
+
+            <div class="card-content">
+              <p class="category">ASTRONOMI</p>
+
+              <h3>Udhëtim në hapësirë</h3>
+
+              <p class="card-description">
+                Njihu me planetët, yjet dhe
+                misteret që gjenden përtej Tokës.
+              </p>
+
+              <div class="card-bottom">
+                <span class="time">10:15 - 11:15</span>
+                <a href="#detaj-hapesira">Detajet ↗</a>
+              </div>
+            </div>
+
+          </article>
+
+          <!-- AKTIVITETI 3 -->
+
+          <article class="activity-card">
+
+            <div class="card-image">
+              <svg viewBox="0 0 600 380"
+                   role="img"
+                   aria-label="Ilustrim i eksperimentit kimik">
+                <rect width="600" height="380" fill="#f5ddab"/>
+
+                <circle cx="480" cy="70" r="95" fill="#fff1cf"/>
+
+                <path d="M265 70 H335
+                         M285 70 V170
+                         L205 280
+                         Q190 313 225 320
+                         H375
+                         Q410 313 395 280
+                         L315 170 V70"
+                      fill="#fffaf0"
+                      stroke="#526b77"
+                      stroke-width="11"
+                      stroke-linejoin="round"/>
+
+                <path d="M238 260 Q300 240 362 260
+                         L385 303
+                         H215 Z"
+                      fill="#94d5c7"/>
+
+                <circle cx="280" cy="270" r="17" fill="#53b5a4"/>
+                <circle cx="330" cy="291" r="12" fill="#53b5a4"/>
+                <circle cx="310" cy="225" r="10" fill="#ffffff"/>
+                <circle cx="265" cy="190" r="8" fill="#ffffff"/>
+                <circle cx="342" cy="165" r="13" fill="#ffffff"/>
+              </svg>
+
+              <span class="card-number">03 / 06</span>
+            </div>
+
+            <div class="card-content">
+              <p class="category">EKSPERIMENTE</p>
+
+              <h3>Magjia e kimisë</h3>
+
+              <p class="card-description">
+                Eksperimente interesante që zbulojnë
+                si reagojnë materialet e ndryshme.
+              </p>
+
+              <div class="card-bottom">
+                <span class="time">11:30 - 12:30</span>
+                <a href="#detaj-kimia">Detajet ↗</a>
+              </div>
+            </div>
+
+          </article>
+
+          <!-- AKTIVITETI 4 -->
+
+          <article class="activity-card">
+
+            <div class="card-image">
+              <svg viewBox="0 0 600 380"
+                   role="img"
+                   aria-label="Ilustrim i planetit Tokë">
+                <rect width="600" height="380" fill="#c9ddb0"/>
+
+                <circle cx="300" cy="185" r="127"
+                        fill="#94c6e8"
+                        stroke="#396e57"
+                        stroke-width="9"/>
+
+                <path d="M220 80
+                         Q275 62 300 105
+                         L276 145
+                         L310 180
+                         L280 218
+                         L240 198
+                         L210 160 Z"
+                      fill="#65a678"/>
+
+                <path d="M350 95
+                         Q420 125 412 190
+                         L365 207
+                         L380 260
+                         L322 300
+                         L298 250
+                         L325 205
+                         L310 170 Z"
+                      fill="#65a678"/>
+
+                <path d="M160 310 Q130 225 175 170"
+                      fill="none"
+                      stroke="#397352"
+                      stroke-width="9"
+                      stroke-linecap="round"/>
+
+                <path d="M160 250 Q100 235 113 180
+                         Q168 190 160 250"
+                      fill="#529969"/>
+
+                <path d="M440 310 Q490 245 460 190"
+                      fill="none"
+                      stroke="#397352"
+                      stroke-width="9"/>
+
+                <path d="M445 245 Q500 225 500 175
+                         Q440 188 445 245"
+                      fill="#529969"/>
+              </svg>
+
+              <span class="card-number">04 / 06</span>
+            </div>
+
+            <div class="card-content">
+              <p class="category">MJEDISI</p>
+
+              <h3>Planeti ynë i gjelbër</h3>
+
+              <p class="card-description">
+                Mëso si mund ta mbrojmë mjedisin
+                përmes zgjedhjeve të vogla çdo ditë.
+              </p>
+
+              <div class="card-bottom">
+                <span class="time">13:00 - 14:00</span>
+                <a href="#detaj-natyra">Detajet ↗</a>
+              </div>
+            </div>
+
+          </article>
+
+          <!-- AKTIVITETI 5 -->
+
+          <article class="activity-card">
+
+            <div class="card-image">
+              <svg viewBox="0 0 600 380"
+                   role="img"
+                   aria-label="Ilustrim i programimit">
+                <rect width="600" height="380" fill="#f4c6a9"/>
+
+                <rect x="130" y="72" width="340" height="230"
+                      rx="20" fill="#293b66"/>
+
+                <rect x="149" y="92" width="302" height="185"
+                      rx="9" fill="#394e79"/>
+
+                <circle cx="170" cy="110" r="6" fill="#ff8c80"/>
+                <circle cx="190" cy="110" r="6" fill="#ffd67e"/>
+                <circle cx="210" cy="110" r="6" fill="#b5e69c"/>
+
+                <path d="M260 160 L220 190 L260 220"
+                      fill="none"
+                      stroke="#d9f778"
+                      stroke-width="12"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+
+                <path d="M340 160 L380 190 L340 220"
+                      fill="none"
+                      stroke="#d9f778"
+                      stroke-width="12"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+
+                <path d="M320 150 L282 231"
+                      stroke="#ffb0a1"
+                      stroke-width="11"
+                      stroke-linecap="round"/>
+
+                <path d="M110 303 H490 L460 323 H140 Z"
+                      fill="#394e79"/>
+              </svg>
+
+              <span class="card-number">05 / 06</span>
+            </div>
+
+            <div class="card-content">
+              <p class="category">PROGRAMIM</p>
+
+              <h3>Krijo lojën tënde</h3>
+
+              <p class="card-description">
+                Mëso hapat e parë në programim
+                duke krijuar një lojë të thjeshtë.
+              </p>
+
+              <div class="card-bottom">
+                <span class="time">14:15 - 15:15</span>
+                <a href="#detaj-kodi">Detajet ↗</a>
+              </div>
+            </div>
+
+          </article>
+
+          <!-- AKTIVITETI 6 -->
+
+          <article class="activity-card">
+
+            <div class="card-image">
+              <svg viewBox="0 0 600 380"
+                   role="img"
+                   aria-label="Ilustrim i energjisë">
+                <rect width="600" height="380" fill="#f8dca0"/>
+
+                <circle cx="300" cy="168" r="98"
+                        fill="#fff4c6"
+                        stroke="#354d67"
+                        stroke-width="10"/>
+
+                <path d="M260 248 Q265 270 275 282
+                         H325 Q335 270 340 248"
+                      fill="#fff4c6"
+                      stroke="#354d67"
+                      stroke-width="10"/>
+
+                <path d="M276 283 H324 V303 H276 Z"
+                      fill="#354d67"/>
+
+                <path d="M283 303 H317 V317 H283 Z"
+                      fill="#354d67"/>
+
+                <path d="M315 100 L270 178
+                         H309 L286 226
+                         L350 150 H307 Z"
+                      fill="#ffc05e"
+                      stroke="#dc9039"
+                      stroke-width="5"/>
+
+                <path d="M300 40 V18
+                         M430 160 H460
+                         M140 160 H170
+                         M395 75 L415 55
+                         M205 75 L185 55"
+                      stroke="#354d67"
+                      stroke-width="10"
+                      stroke-linecap="round"/>
+              </svg>
+
+              <span class="card-number">06 / 06</span>
+            </div>
+
+            <div class="card-content">
+              <p class="category">INOVACION</p>
+
+              <h3>Energjia që na lëviz</h3>
+
+              <p class="card-description">
+                Zbulo energjinë e ripërtëritshme
+                dhe idetë e së ardhmes.
+              </p>
+
+              <div class="card-bottom">
+                <span class="time">15:30 - 16:30</span>
+                <a href="#detaj-energjia">Detajet ↗</a>
+              </div>
+            </div>
+
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RRETH FESTIVALIT -->
+
+    <section class="about" id="rreth">
+      <div class="container">
+
+        <p class="section-label">PSE SCIENCEFEST?</p>
+
+        <h2 class="section-title">
+          Idetë e mëdha fillojnë me një pyetje të vogël.
+        </h2>
+
+        <p>
+          Festivali i Shkencës është një projekt mësimor
+          që paraqet aktivitete të ndryshme shkencore.
+          Qëllimi është të mësojmë për teknologjinë,
+          natyrën, hapësirën, kiminë dhe programimin
+          përmes aktiviteteve interesante.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- DETAJET E AKTIVITETEVE -->
+
+    <section class="details" id="detajet">
+      <div class="container">
+
+        <p class="section-label">PLANIFIKO DITËN</p>
+
+        <h2 class="section-title">
+          Detajet e aktiviteteve
+        </h2>
+
+        <article class="detail-item" id="detaj-robotika">
+          <h3>09:00 - 10:00 | Robotët e së ardhmes</h3>
+          <p>
+            Demonstrim i funksionimit të robotëve
+            dhe mënyrës së programimit të tyre.
+          </p>
+        </article>
+
+        <article class="detail-item" id="detaj-hapesira">
+          <h3>10:15 - 11:15 | Udhëtim në hapësirë</h3>
+          <p>
+            Prezantim i planetëve, yjeve dhe
+            karakteristikave të Sistemit Diellor.
+          </p>
+        </article>
+
+        <article class="detail-item" id="detaj-kimia">
+          <h3>11:30 - 12:30 | Magjia e kimisë</h3>
+          <p>
+            Eksperimente të thjeshta për të
+            kuptuar reaksionet kimike.
+          </p>
+        </article>
+
+        <article class="detail-item" id="detaj-natyra">
+          <h3>13:00 - 14:00 | Planeti ynë i gjelbër</h3>
+          <p>
+            Diskutim për riciklimin dhe
+            mbrojtjen e burimeve natyrore.
+          </p>
+        </article>
+
+        <article class="detail-item" id="detaj-kodi">
+          <h3>14:15 - 15:15 | Krijo lojën tënde</h3>
+          <p>
+            Ushtrim praktik për krijimin
+            e një loje me kod të thjeshtë.
+          </p>
+        </article>
+
+        <article class="detail-item" id="detaj-energjia">
+          <h3>15:30 - 16:30 | Energjia që na lëviz</h3>
+          <p>
+            Njohje me energjinë diellore, energjinë
+            e erës dhe burimet e ripërtëritshme.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <h3>✳ SCIENCEFEST</h3>
+    <p>Festivali që përshtatet në çdo ekran</p>
+    <p>
+      Projekt mësimor | Programimi në WWW | Java IV
+    </p>
+  </footer>
+
+</body>
+</html>
